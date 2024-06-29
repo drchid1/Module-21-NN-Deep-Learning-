@@ -35,7 +35,7 @@ We built a model using the TensorFlow module. The dataset was split using the Sc
 # Results
 
 ## Attempt 1
-This is the original attempt, and the code for this can be found in the Jupyter Notebook called [AphabetSoupCharity.ipynb](AphabetSoupCharity.ipynb)
+This is the original attempt, and the code for this can be found in the Jupyter Notebook called [AphabetSoupCharity_Attempt_1.ipynb](AphabetSoupCharity_Attempt_1.ipynb)
 
 **Data**: We reduced the distinct variables in the `APPLICATION_TYPE` from 17 to 10. We also reduced the `CLASSIFICATION` distinct variables from 71 to 9
 
@@ -49,7 +49,7 @@ The model had an accuracy of 72.7%.
 
 ## Attempt 2
 
-To improve on the original attempt we adjusted the model to optimise the model for better accuracy. This time we increased the number of nodes in the layers. The code for this second attempt can be found in [AphabetSoupCharity_Optimisation_Attempt_1.ipynb](AphabetSoupCharity_Optimisation_Attempt_1.ipynb)
+To improve on the original attempt we adjusted the model to optimise the model for better accuracy. This time we increased the number of nodes in the layers. The code for this second attempt can be found in [AphabetSoupCharity_Optimisation_Attempt_2.ipynb](AphabetSoupCharity_Optimisation_Attempt_2.ipynb)
 
 **Data**: The data was left the same as for Attempt 1.
 
@@ -63,18 +63,18 @@ The model's accuracy was 73%, which is more or less the same as the first attemp
 
 ## Attempt 3
 
-Further changes to the data and the model were undertaken to see if accuracy could be improved.
+Further changes to the data and the model were undertaken to see if accuracy could be improved. The code for the third attempt can be found in [AphabetSoupCharity_Optimisation_Attempt_3.ipynb](AphabetSoupCharity_Optimisation_Attempt_3.ipynb)
 
 **Data**:  In the `APPLICATION_TYPE` column the distinct variables were further reduced from 17 to 10 to 9. We also reduced the `CLASSIFICATION` distinct variables further from 71 to 9 to 6
 
-**Model**: The model had a first layer with 80 nodes, a second hidden layer with 50 nodes and a third hidden layer with 50 nodes. We used the 'relu' activation and trained again with 100 epochs.
+**Model**: The model was changed to increase the number of nodes and add an extra layer: the first layer with 80 nodes, a second hidden layer with 50 nodes, and a third hidden layer with 50 nodes. We used the 'relu' activation and trained again with 100 epochs.
 
 We achieved the following results from the model:
 ```
 Loss: 0.5786693096160889, Accuracy: 0.7294460535049438
 ```
 
-Interestingly, we had a slightly reduced accuracy (72.9%) despite increasing the layers and nodes, and we suspect this is probably because of the change in the data grouping.
+Interestingly, we had a slightly reduced accuracy (72.9%) despite increasing the layers and nodes, and we suspect this is probably because of the change in the data grouping and perhaps due to 'overfitting'.
 
 ## Keras Tuner
 

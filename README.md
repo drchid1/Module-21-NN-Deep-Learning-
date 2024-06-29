@@ -26,7 +26,7 @@ Data columns (total 12 columns):
 dtypes: int64(4), object(8)
 memory usage: 3.1+ MB
 ```
-The EIN and NAME columns were dropped as they were a unique ID and the name of the organisation respectively. There were 7 other categorical data columns and 3 numeric data columns. All the categorical columns had less than 10 distinct values except the `APPLICATION_TYPE` (17 Distinct Values) and `CLASSIFICATION` (71 Distinct Values) columns. These two columns were transformed to reduce the number of distinct variables by grouping values some small values together as the 'Other' category.
+The EIN and NAME columns were dropped as they were a unique ID and the name of the organisation respectively. There were 7 other categorical data columns and 3 numeric data columns. All the categorical columns had less than 10 distinct values except the `APPLICATION_TYPE` (17 Distinct Values) and `CLASSIFICATION` (71 Distinct Values) columns. These two columns were transformed to reduce the number of distinct variables by grouping them as 'other' and reducing the total number of distinct variables in each column.
 
 The label we were trying to predict was the `IS_SUCCESSFUL` column (y value), and the rest of the dataframe (after removing the `EIN` and `NAME` columns) formed the features (x value). The categorical variables were converted to numeric using the `get_dummies` function in Pandas. The features were then scaled using the 'StandardScaler' from SciKit Learn Library.
 

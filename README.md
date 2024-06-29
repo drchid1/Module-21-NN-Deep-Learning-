@@ -30,7 +30,7 @@ The EIN and NAME columns were dropped as they were a unique ID and the name of t
 
 The label we were trying to predict was the `IS_SUCCESSFUL` column (y value), and the rest of the dataframe (after removing the `EIN` and `NAME` columns) formed the features (x value). The categorical variables were converted to numeric using the `get_dummies` function in Pandas. The features were then scaled using the 'StandardScaler' from SciKit Learn Library.
 
-We built a model using the TensorFlow module. The dataset was split using the Scikit Learn library for training and testing the model. We ran the model for three attempts, using some of the data and the neural Network model. We also ran the Keras Tuner to find an optimum-performing model. The output model files for each of the attempts are saved in the [output folder](output).
+We built a model using the TensorFlow module. The dataset was split using the Scikit Learn library for training and testing the model. We ran the model three times, and in each run, we varied either the data or the model slightly to optimise for accuracy. We also ran the Keras Tuner to find an optimum-performing model. The output model files for each of the attempts are saved in the [output folder](output).
 
 # Results
 

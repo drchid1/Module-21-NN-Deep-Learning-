@@ -78,7 +78,8 @@ Interestingly, we had a slightly reduced accuracy (72.9%) despite increasing the
 
 ## Keras Tuner
 
-The assignment task was to optimise the model and see if we could achieve over 75% Accuracy. The code for this can be found in [AphabetSoupCharity_Optimisation_KerasTuner.ipynb](AphabetSoupCharity_Optimisation_KerasTuner.ipynb). We attempted to use the Keras Tuner to find the optimal performing model. The best model is shown below:
+The assignment task was to optimise the model and see if we could achieve over 75% Accuracy. In our manual tweaking of the model, we were not able to achieve accuracy beyond 73%. We employed the Keras Tuner to see if an optimal model can be found. The code for this can be found in [AphabetSoupCharity_Optimisation_KerasTuner.ipynb](AphabetSoupCharity_Optimisation_KerasTuner.ipynb).  The best performing model is shown below:
+
 ```
 {'activation': 'relu',
  'first_units': 21,

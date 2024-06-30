@@ -103,8 +103,25 @@ This model had the following results:
 ```
 Loss: 0.5564839243888855, Accuracy: 0.7343440055847168
 ```
-This is by far the best result we have had in all the attempts with an Accuracy of 73.4%. 
+This is by far the best result we have had in the attempts so far with an Accuracy of 73.4%. 
+
+## Attempt 4
+
+Now that we have a rough understanding of a good model using the Keras Tuner we applied this for a 4th attempt but this time increased the epochs to 50 from the 20 in the Keras Tuner, but less than the 100 epochs used in the first three attempts.
+
+**Data**:  The Data was the same as in 'Attempt 3'. The `APPLICATION_TYPE` column distinct variables were reduced to 9. We also reduced the `CLASSIFICATION` distinct variables to 6.
+
+**Model**: The optimum model configuration from the Keras Tuner was replicated. The first layer of 51 nodes and the subsequent 5 hidden layers had the following nodes (51, 51, 41, 41, 71). The 'relu' activation was used with 50 epochs. 
+
+On this occasion, we not only extracted the accuracy from the model but also the 'precision' and 'recall' of the model to further understand the results. The model had the following results:
+```
+Accuracy: 	 0.7285131216049194 
+Precision:	 0.7300938963890076 
+Recall:		 0.7804452180862427
+```
+
+Again, the accuracy was similar to the other attempts, with an Accuracy score of 72.9%. The model's ability to correctly predict a truly 'successful' application from all predicted 'successful' applications (Precision) is 73%. The recall which is the model's ability to correctly pick out successful applications from all truly 'successful' applications is 78#%  
 
 # Summary
 
-Given all the attempts at predicting the 'successful' applicant, the best model we had managed to build only had an accuracy score of 73.4%. The assignment is looking for a binary outcome, and perhaps other machine learning modes such as Logistic Regression, Random Forests, K-Nearest Neighbours, and Support Vector Machines could be trialled to see if they are any better at predicting. We could also potentially look at improving the input dataset in both quantity and quality. We could ask for a few extra years' worth of data, but the quality of data may be more crucial than just quantity. If we are able to better understand how Alphabet Soup Foundation is defining success, we could potentially seek out parameters which feed into that definition of success. Feeding these extra parameters as columns to the dataset may help the model to predict better predictions. 
+Given all the attempts at predicting the 'successful' applicant, the best model we had managed to build only had an accuracy score of 73.4%. Despite tweaking the model with the number of nodes, layers, activation type and epochs we did not manage to pass the 73.4% mark. While this is a 'decent' accuracy, the model cannot be recommended for use without further optimisation. The assignment is looking for a binary classification, and perhaps other machine learning modes such as Logistic Regression, Random Forests, K-Nearest Neighbours, and Support Vector Machines could be trialled to see if they are any better at predicting. We could also potentially look at improving the input dataset in both quantity and quality. We could ask for a few extra years' worth of data, but the quality of data may be more crucial than just quantity. If we are able to better understand how Alphabet Soup Foundation is defining success, we could potentially seek out parameters which feed into that definition of success. Feeding these extra parameters as features to the dataset may help the model to predict better predictions. 

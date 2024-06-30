@@ -26,16 +26,16 @@ Data columns (total 12 columns):
 dtypes: int64(4), object(8)
 memory usage: 3.1+ MB
 ```
-The EIN and NAME columns were dropped as they were a unique ID and the name of the organisation respectively. There were 7 other categorical data columns and 3 numeric data columns. All the categorical columns had less than 10 distinct values except the `APPLICATION_TYPE` (17 Distinct Values) and `CLASSIFICATION` (71 Distinct Values) columns. These two columns were transformed to reduce the number of distinct variables by grouping values some small values together as the 'Other' category.
+The EIN and NAME columns were dropped as they were a unique ID and the name of the organisation respectively. There were 7 other categorical data columns and 3 numeric data columns. All the categorical columns had less than 10 distinct values except the `APPLICATION_TYPE` (17 Distinct Values) and `CLASSIFICATION` (71 Distinct Values) columns. These two columns were transformed to reduce the number of distinct variables by grouping them as 'other' and reducing the total number of distinct variables in each column.
 
 The label we were trying to predict was the `IS_SUCCESSFUL` column (y value), and the rest of the dataframe (after removing the `EIN` and `NAME` columns) formed the features (x value). The categorical variables were converted to numeric using the `get_dummies` function in Pandas. The features were then scaled using the 'StandardScaler' from SciKit Learn Library.
 
-We built a model using the TensorFlow module. The dataset was split using the Scikit Learn library for training and testing the model. We ran the model for three attempts, using some of the data and the neural Network model. We also ran the Keras Tuner to find an optimum-performing model. The output model files for each of the attempts are saved in the [output folder](output).
+We built a model using the TensorFlow module. The dataset was split using the Scikit Learn library for training and testing the model. We ran the model three times, and in each run, we varied either the data or the model slightly to optimise for accuracy. We also ran the Keras Tuner to find an optimum-performing model. The output model files for each of the attempts are saved in the [output folder](output).
 
 # Results
 
 ## Attempt 1
-This is the original attempt, and the code for this can be found in the Jupyter Notebook called [AphabetSoupCharity.ipynb](AphabetSoupCharity.ipynb)
+This is the original attempt, and the code for this can be found in the Jupyter Notebook called [AphabetSoupCharity_Attempt_1.ipynb](AphabetSoupCharity_Attempt_1.ipynb)
 
 **Data**: We reduced the distinct variables in the `APPLICATION_TYPE` from 17 to 10. We also reduced the `CLASSIFICATION` distinct variables from 71 to 9
 
@@ -49,7 +49,7 @@ The model had an accuracy of 72.7%.
 
 ## Attempt 2
 
-To improve on the original attempt we adjusted the model to optimise the model for better accuracy. This time we increased the number of nodes in the layers. The code for this second attempt can be found in [AphabetSoupCharity_Optimisation_Attempt_1.ipynb](AphabetSoupCharity_Optimisation_Attempt_1.ipynb)
+To improve on the original attempt we adjusted the model to optimise the model for better accuracy. This time we increased the number of nodes in the layers. The code for this second attempt can be found in [AphabetSoupCharity_Optimisation_Attempt_2.ipynb](AphabetSoupCharity_Optimisation_Attempt_2.ipynb)
 
 **Data**: The data was left the same as for Attempt 1.
 
@@ -63,22 +63,23 @@ The model's accuracy was 73%, which is more or less the same as the first attemp
 
 ## Attempt 3
 
-Further changes to the data and the model were undertaken to see if accuracy could be improved.
+Further changes to the data and the model were undertaken to see if accuracy could be improved. The code for the third attempt can be found in [AphabetSoupCharity_Optimisation_Attempt_3.ipynb](AphabetSoupCharity_Optimisation_Attempt_3.ipynb)
 
 **Data**:  In the `APPLICATION_TYPE` column the distinct variables were further reduced from 17 to 10 to 9. We also reduced the `CLASSIFICATION` distinct variables further from 71 to 9 to 6
 
-**Model**: The model had a first layer with 80 nodes, a second hidden layer with 50 nodes and a third hidden layer with 50 nodes. We used the 'relu' activation and trained again with 100 epochs.
+**Model**: The model was changed to increase the number of nodes and add an extra layer: the first layer with 80 nodes, a second hidden layer with 50 nodes, and a third hidden layer with 50 nodes. We used the 'relu' activation and trained again with 100 epochs.
 
 We achieved the following results from the model:
 ```
 Loss: 0.5786693096160889, Accuracy: 0.7294460535049438
 ```
 
-Interestingly, we had a slightly reduced accuracy (72.9%) despite increasing the layers and nodes, and we suspect this is probably because of the change in the data grouping.
+Interestingly, we had a slightly reduced accuracy (72.9%) despite increasing the layers and nodes, and we suspect this is probably because of the change in the data grouping and perhaps due to 'overfitting'.
 
 ## Keras Tuner
 
-The assignment task was to optimise the model and see if we could achieve over 75% Accuracy. The code for this can be found in [AphabetSoupCharity_Optimisation_KerasTuner.ipynb](AphabetSoupCharity_Optimisation_KerasTuner.ipynb). We attempted to use the Keras Tuner to find the optimal performing model. The best model is shown below:
+The assignment task was to optimise the model and see if we could achieve over 75% Accuracy. In our manual tweaking of the model, we were not able to achieve accuracy beyond 73%. We employed the Keras Tuner to see if an optimal model can be found. The code for this can be found in [AphabetSoupCharity_Optimisation_KerasTuner.ipynb](AphabetSoupCharity_Optimisation_KerasTuner.ipynb).  The best performing model is shown below:
+
 ```
 {'activation': 'relu',
  'first_units': 21,
@@ -102,8 +103,25 @@ This model had the following results:
 ```
 Loss: 0.5564839243888855, Accuracy: 0.7343440055847168
 ```
-This is by far the best result we have had in all the attempts with an Accuracy of 73.4%
+This is by far the best result we have had in the attempts so far with an Accuracy of 73.4%. 
+
+## Attempt 4
+
+Now that we have a rough understanding of a good model using the Keras Tuner we applied this for a 4th attempt but this time increased the epochs to 50 from the 20 in the Keras Tuner, but less than the 100 epochs used in the first three attempts.
+
+**Data**:  The Data was the same as in 'Attempt 3'. The `APPLICATION_TYPE` column distinct variables were reduced to 9. We also reduced the `CLASSIFICATION` distinct variables to 6.
+
+**Model**: The optimum model configuration from the Keras Tuner was replicated. The first layer of 51 nodes and the subsequent 5 hidden layers had the following nodes (51, 51, 41, 41, 71). The 'relu' activation was used with 50 epochs. 
+
+On this occasion, we not only extracted the accuracy from the model but also the 'precision' and 'recall' of the model to further understand the results. The model had the following results:
+```
+Accuracy: 	 0.7285131216049194 
+Precision:	 0.7300938963890076 
+Recall:		 0.7804452180862427
+```
+
+Again, the accuracy was similar to the other attempts, with an Accuracy score of 72.9%. The model's ability to correctly predict a truly 'successful' application from all predicted 'successful' applications (Precision) is 73%. The recall which is the model's ability to correctly pick out successful applications from all truly 'successful' applications is 78#%  
 
 # Summary
 
-Given all the attempts at predicting the 'successful' applicant, the best model we had managed to build only had an accuracy score of 73.4%.  The assignment is looking for a binary outcome, and perhaps other machine learning modes such as Logistic Regression, Random Forests, K-Nearest Neighbours, and Support Vector Machines could be trialled to see if they are any better at predicting. We could also potentially look at improving the input dataset in both quantity and quality. We could ask for a few extra years' worth of data, but the quality of data may be more crucial than just quantity. If we are able to better understand how Alphabet Soup Foundation is defining success, we could potentially seek out parameters which feed into that definition of success. Feeding these extra parameters as columns to the dataset may help the model to predict better predictions. 
+Given all the attempts at predicting the 'successful' applicant, the best model we had managed to build only had an accuracy score of 73.4%. Despite tweaking the model with the number of nodes, layers, activation type and epochs we did not manage to pass the 73.4% mark. While this is a 'decent' accuracy, the model cannot be recommended for use without further optimisation. The assignment is looking for a binary classification, and perhaps other machine learning modes such as Logistic Regression, Random Forests, K-Nearest Neighbours, and Support Vector Machines could be trialled to see if they are any better at predicting. We could also potentially look at improving the input dataset in both quantity and quality. We could ask for a few extra years' worth of data, but the quality of data may be more crucial than just quantity. If we are able to better understand how Alphabet Soup Foundation is defining success, we could potentially seek out parameters which feed into that definition of success. Feeding these extra parameters as features to the dataset may help the model to predict better predictions. 

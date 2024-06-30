@@ -103,8 +103,8 @@ This model had the following results:
 ```
 Loss: 0.5564839243888855, Accuracy: 0.7343440055847168
 ```
-This is by far the best result we have had in all the attempts with an Accuracy of 73.4%
+This is by far the best result we have had in all the attempts with an Accuracy of 73.4%. 
 
 # Summary
 
-Given all the attempts at predicting the 'successful' applicant, the best model we had managed to build only had an accuracy score of 73.4%.  The assignment is looking for a binary outcome, and perhaps other machine learning modes such as Logistic Regression, Random Forests, K-Nearest Neighbours, and Support Vector Machines could be trialled to see if they are any better at predicting. We could also potentially look at improving the input dataset in both quantity and quality. We could ask for a few extra years' worth of data, but the quality of data may be more crucial than just quantity. If we are able to better understand how Alphabet Soup Foundation is defining success, we could potentially seek out parameters which feed into that definition of success. Feeding these extra parameters as columns to the dataset may help the model to predict better predictions. 
+Given all the attempts at predicting the 'successful' applicant, the best model we had managed to build only had an accuracy score of 73.4%. The assignment is looking for a binary outcome, and perhaps other machine learning modes such as Logistic Regression, Random Forests, K-Nearest Neighbours, and Support Vector Machines could be trialled to see if they are any better at predicting. We could also potentially look at improving the input dataset in both quantity and quality. We could ask for a few extra years' worth of data, but the quality of data may be more crucial than just quantity. If we are able to better understand how Alphabet Soup Foundation is defining success, we could potentially seek out parameters which feed into that definition of success. Feeding these extra parameters as columns to the dataset may help the model to predict better predictions. 
